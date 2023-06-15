@@ -26,4 +26,8 @@ const viewBook = (obj) => {
   renderToDOM('#view', domString);
 };
 
-export default viewBook;
+export
+{
+  viewBook,
+  clearDom,
+};

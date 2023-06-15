@@ -1,6 +1,6 @@
-// import client from '../utils/client';
+import client from '../utils/client';
 
-// const endpoint = client.databaseURL;
+const endpoint = client.databaseURL;
 
 // FIXME:  GET ALL AUTHORS
 const getAuthors = () => {};
@@ -9,7 +9,17 @@ const getAuthors = () => {};
 const createAuthor = () => {};
 
 // FIXME: GET SINGLE AUTHOR
-const getSingleAuthor = () => {};
+const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data)) // will resolve a single object
+    .catch(reject);
+});
 
 // FIXME: DELETE AUTHOR
 const deleteSingleAuthor = () => {};
