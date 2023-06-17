@@ -37,8 +37,4 @@ const addBookForm = (obj = {}) => {
   selectAuthor(`${obj.author_id || ''}`);
 };
 
-export
-{
-  addBookForm,
-  renderToDOM,
-};
+export default addBookForm;

@@ -1,5 +1,6 @@
 import client from '../utils/client';
 // API CALLS FOR BOOKS
+
 const endpoint = client.databaseURL;
 
 // TODO: GET BOOKS
@@ -11,7 +12,13 @@ const getBooks = () => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
@@ -33,11 +40,11 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'applicaton/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data)) // will resolve a single object
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -60,13 +67,13 @@ const updateBook = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'applicaiton/json',
     },
     body: JSON.stringify(payload),
   })
     .then((response) => response.json())
     .then(resolve)
-    .catch(reject);
+    .then(reject);
 });
 
 // TODO: FILTER BOOKS ON SALE
