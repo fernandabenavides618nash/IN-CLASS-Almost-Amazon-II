@@ -61,14 +61,14 @@ const domEvents = () => {
     if (e.target.id.includes('add-author-btn')) {
       addAuthorForm();
     }
-    // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+    // FIXME: ADD CLICK EVENT FOR EDITING/UPDATING AN AUTHOR
 
     if (e.target.id.includes('update-author-btn')) {
       // console.warn('Clicked right btn', e.target.id);
       // console.warn(e.target.id.split('--'));
       const [, firebaseKey] = e.target.id.split('--');
 
-      getSingleAuthor(firebaseKey).then((obj) => addAuthorForm(obj));
+      getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
     }
 
     if (e.target.id.includes('view-book-btn')) {
